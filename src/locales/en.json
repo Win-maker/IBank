@@ -1,5 +1,25 @@
 {
     "common": {
-        "hello": "Hello"
+        "hello": "Hello",
+        "search":"Search"
+    },
+    "menuBar":{
+        "loanAppliant":"Loan Appliant",
+        "loanMenu":"Loan Menu",
+        "masterData":"Master Data"
+    },
+    "masterData":{
+        "loan":"Loan",
+        "listAll":"List of All Loans",
+        "filter":"Filter by: All",
+        "sort":"Sort by: Newest"
+    },
+        "masterDataColumn":{
+        "no":"Number",
+        "name":"Name",
+        "category":"Category",
+        "group":"Group",
+        "status":"Status",
+        "action":"Action"
     }
 }

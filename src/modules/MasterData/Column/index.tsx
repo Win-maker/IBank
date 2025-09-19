@@ -6,6 +6,9 @@ import green from "@/assets/Frame 476.svg";
 import grey from "@/assets/Frame 476 (1).svg";
 
 import ActionsCell from "./Actioncolumn";
+import TableHeaderCell from "@/common/TableHeaderCell";
+import { t } from "i18next";
+
 export type Loan = {
   id: number;
   name: string;
@@ -52,18 +55,19 @@ export const loans: Loan[] = [
     disabled: true,
   },
 ];
+
 export const columns: ColumnDef<Loan>[] = [
-  {
-    header: "ลำดับ",
-    cell: ({ row }) => (
-      <span className={row.original.disabled ? "opacity-50" : ""}>
-        {row.index + 1}
-      </span>
-    ),
+
+{
+    id: "row-number",
+    header: () => <TableHeaderCell className="py-2">{t("masterDataColumn.no")}</TableHeaderCell>,
+    cell: ({ row }) => <div className="font-medium">{row.index + 1}</div>,
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "name",
-    header: "ชื่อผลิตภัณฑ์",
+    header: () => <TableHeaderCell>{t("masterDataColumn.name")}</TableHeaderCell>,
     cell: ({ row }) => (
       <span className={row.original.disabled ? "opacity-50" : ""}>
         {row.getValue("name")}
@@ -72,7 +76,7 @@ export const columns: ColumnDef<Loan>[] = [
   },
   {
     accessorKey: "category",
-    header: "หมวด",
+    header: () => <TableHeaderCell>{t("masterDataColumn.category")}</TableHeaderCell>,
     cell: ({ row }) => (
       <span className={row.original.disabled ? "opacity-50" : ""}>
         {row.getValue("category")}
@@ -81,7 +85,7 @@ export const columns: ColumnDef<Loan>[] = [
   },
   {
     accessorKey: "group",
-    header: "กลุ่ม",
+    header: () => <TableHeaderCell>{t("masterDataColumn.group")}</TableHeaderCell>,
     cell: ({ row }) => (
       <span className={row.original.disabled ? "opacity-50" : ""}>
         {row.getValue("group")}
@@ -90,11 +94,10 @@ export const columns: ColumnDef<Loan>[] = [
   },
   {
     accessorKey: "miniCAP",
-    header: "miniCAP",
+    header: () => <TableHeaderCell>miniCAP</TableHeaderCell>,
     cell: ({ row }) => {
       const value = row.original.miniCAP;
       const disabledClass = row.original.disabled ? "opacity-50" : "";
-
       return (
         <div className={disabledClass}>
           {typeof value === "string" ? (
@@ -110,23 +113,19 @@ export const columns: ColumnDef<Loan>[] = [
   },
   {
     accessorKey: "status",
-    header: "สถานะรายการ",
+    header: () => <TableHeaderCell>{t("masterDataColumn.state")}</TableHeaderCell>,
     cell: ({ row }) => {
       const value = row.original.status;
-
-      // if it's an image path (like green svg)
       if (typeof value === "string" && value.includes(".svg")) {
         return <img src={value} alt="status" className="w-23 h-9" />;
       }
-
-      // fallback to text
       return <span>{value}</span>;
     },
   },
-
   {
     id: "actions",
-    header: "รายละเอียด",
+    header: () => <TableHeaderCell>{t("masterDataColumn.action")}</TableHeaderCell>,
     cell: ({ row }) => <ActionsCell row={row} />,
   },
 ];
+

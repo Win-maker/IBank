@@ -1,17 +1,30 @@
-import i18next from 'i18next';
+import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import en from '@/locales/en.json';
-import mm from '@/locales/mm.json';
 
-i18next.use(initReactI18next).init({
-	lng: localStorage.getItem('scaffa-locale') || 'en',
-	fallbackLng: 'en',
-	debug: true,
-	interpolation: {
-		escapeValue: false
-	},
-	resources: {
-		en: { translation: en },
-		mm: { translation: mm }
-	}
+
+import translationEN from '../locales/en.json'; 
+import translationMM from '../locales/mm.json'; 
+import translationTH from '../locales/th.json';
+
+const resources = {
+  en: {
+    translation: translationEN,
+  },
+  mm: {
+    translation: translationMM,
+  },
+  th: {
+	translation : translationTH,
+  }
+};
+
+const savedLanguage = localStorage.getItem("language") || "en";
+i18n.use(initReactI18next).init({
+  resources,
+  lng: savedLanguage, 
+  // keySeparator: false, // Allow for nested translations without using dots
+  interpolation: {
+    escapeValue: false,
+  },
 });
+export default i18n;

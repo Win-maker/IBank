@@ -1,7 +1,10 @@
+import { useTranslation } from "react-i18next"
+
 const LoanView = () => {
+  const {t} = useTranslation()
   return (
     <div>
-      Hello Loan View
+     {t("common.hello")}
     </div>
   )
 }

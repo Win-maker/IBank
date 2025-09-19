@@ -1,0 +1,25 @@
+{
+    "common": {
+        "hello": "สวัสดี",
+        "search":"ค้นหา"
+    },
+    "menuBar":{
+        "loanAppliant":"ผู้ขอสินเชื่อ",
+        "loanMenu":"สินเชื่อ",
+        "masterData":"ข้อมูลหลัก"
+    },
+    "masterDataColumn":{
+        "no":"ลำดับ",
+        "name":"ชื่อผลิตภัณฑ์",
+        "category":"หมวด",
+        "group":"กลุ่ม",
+        "status":"สถานะรายการ",
+        "action":"รายละเอียด"
+    },
+     "masterData": {
+    "loan": "สินเชื่อ",
+    "listAll": "รายการสินเชื่อทั้งหมด",
+    "filter": "กรองโดย: ทั้งหมด",
+    "sort": "เรียงตาม: ใหม่ที่สุด"
+  }
+}

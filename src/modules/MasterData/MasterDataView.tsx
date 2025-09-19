@@ -12,14 +12,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { columns, loans } from "./Colmn";
+import { columns, loans } from "./Column";
 import search from "@/assets/mi_search.svg";
 import { Button } from "@/components/ui/button";
 import left from "@/assets/keyboard_arrow_right.svg";
 import right from "@/assets/keyboard_arrow_right (1).svg";
 import up from "@/assets/keyboard_arrow_up.svg";
+import { useTranslation } from "react-i18next";
+
 
 const MasterDataView = () => {
+
+  const {t} = useTranslation()
+
+
   const [filter, setFilter] = React.useState("");
   const [category, setCategory] = React.useState("all");
   const [status, setStatus] = React.useState("all");
@@ -41,6 +47,8 @@ const MasterDataView = () => {
     page * pageSize
   );
 
+  
+
   const table = useReactTable({
     data: paginatedData,
     columns,
@@ -49,17 +57,17 @@ const MasterDataView = () => {
 
   return (
     <div className="p-6 min-h-screen bg-gray-100">
-      <h1 className="text-xl font-bold mb-5">สินเชื่อ</h1>
+      <h1 className="text-xl font-bold mb-5">{t("masterData.loan")}</h1>
       <div className="bg-white p-6 rounded-lg">
         <div className="flex items-center justify-between mt-5 ">
           <h2 className="font-bold">
-            รายการสินเชื่อทั้งหมด ({filteredData.length})
+            {t("masterData.listAll")} ({filteredData.length})
           </h2>
 
           <div className="flex items-center gap-3">
             <div className="relative w-64">
               <Input
-                placeholder="ค้นหา"
+                placeholder={t("common.search")}
                 value={filter}
                 onChange={(e) => setFilter(e.target.value)}
                 className="w-full pl-8"
@@ -74,10 +82,10 @@ const MasterDataView = () => {
             {/* Category Select */}
             <Select value={category} onValueChange={setCategory}>
               <SelectTrigger className="w-[160px]">
-                <SelectValue placeholder="กรองโดย: ทั้งหมด" />
+                <SelectValue placeholder={t("masterData.filter")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">กรองโดย: ทั้งหมด</SelectItem>
+                <SelectItem value="all">{t("masterData.filter")}</SelectItem>
                 <SelectItem value="secured">A</SelectItem>
                 <SelectItem value="unsecured">B</SelectItem>
               </SelectContent>
@@ -86,10 +94,10 @@ const MasterDataView = () => {
             {/* Status Select */}
             <Select value={status} onValueChange={setStatus}>
               <SelectTrigger className="w-[160px]">
-                <SelectValue placeholder="เรียงตาม: ใหม่ที่สุด" />
+                <SelectValue placeholder={t("masterData.sort")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">เรียงตาม: ใหม่ที่สุด</SelectItem>
+                <SelectItem value="all">{t("masterData.sort")} </SelectItem>
                 <SelectItem value="active">C</SelectItem>
                 <SelectItem value="inactive">D</SelectItem>
               </SelectContent>
